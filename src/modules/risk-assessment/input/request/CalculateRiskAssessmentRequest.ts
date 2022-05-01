@@ -9,7 +9,7 @@ export class CalculateRiskAssessmentRequest {
     @IsDefined()
     @Min(0)
     @IsInt()
-    age: string
+    age: number
 
     @IsDefined()
     @Min(0)
