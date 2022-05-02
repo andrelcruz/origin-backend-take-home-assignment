@@ -1,6 +1,6 @@
-import { VehicleInformationRequest } from '../../input/request/VehicleInformationRequest'
-import { InsuranceRiskModifierInterface } from '../../model/InsuranceRiskModifierInterface'
-import { InsuranceScoreEnum } from '../../model/InsuranceScoreEnum'
+import { VehicleInformationRequest } from '@risk-assessment/input/request/VehicleInformationRequest'
+import { InsuranceRiskModifierInterface } from '@risk-assessment/model/InsuranceRiskModifierInterface'
+import { InsuranceScoreEnum } from '@risk-assessment/model/InsuranceScoreEnum'
 import { BaseInsuranceCalculator } from './BaseInsuranceCalculator'
 export class CalculateVehicleInsuranceRiskUseCase extends BaseInsuranceCalculator {
   private vehicleAgeModifierConfig: InsuranceRiskModifierInterface

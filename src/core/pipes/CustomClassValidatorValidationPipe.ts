@@ -1,5 +1,5 @@
+import { ValidationException } from '@core/exceptions'
 import { ValidationError, ValidationPipe } from '@nestjs/common'
-import { ValidationException } from '../exceptions'
 
 export class CustomClassValidatorValidationPipe extends ValidationPipe {
   constructor() {

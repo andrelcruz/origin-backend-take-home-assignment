@@ -1,5 +1,5 @@
-import { CalculateAgeInsuranceModifierUseCase } from '../../../../../../src/modules/risk-assessment/application/usecases/CalculateAgeInsuranceModifierUseCase'
-import { InsuranceRiskModifierInterface } from '../../../../../../src/modules/risk-assessment/model/InsuranceRiskModifierInterface'
+import { CalculateAgeInsuranceModifierUseCase } from '@risk-assessment/application/usecases/CalculateAgeInsuranceModifierUseCase'
+import { InsuranceRiskModifierInterface } from '@risk-assessment/model/InsuranceRiskModifierInterface'
 describe('RiskAssessment :: CalculateAgeInsuranceModifier', () => {
   let calculateAgeInsuranceModifierUseCase: CalculateAgeInsuranceModifierUseCase
   let ageInsuranceModifierConfigMock: InsuranceRiskModifierInterface[]

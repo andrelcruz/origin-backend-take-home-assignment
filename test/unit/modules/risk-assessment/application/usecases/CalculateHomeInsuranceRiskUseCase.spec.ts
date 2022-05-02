@@ -1,7 +1,7 @@
-import { CalculateHomeInsuranceRiskUseCase } from '../../../../../../src/modules/risk-assessment/application/usecases/CalculateHomeInsuranceRiskUseCase'
-import { HomeInformationRequest } from '../../../../../../src/modules/risk-assessment/input/request/HomeInformationRequest'
-import { InsuranceScoreEnum } from '../../../../../../src/modules/risk-assessment/model'
-import { HouseOwnershipEnum } from '../../../../../../src/modules/risk-assessment/model/HouseOwnershipEnum'
+import { CalculateHomeInsuranceRiskUseCase } from '@risk-assessment/application/usecases/CalculateHomeInsuranceRiskUseCase'
+import { HomeInformationRequest } from '@risk-assessment/input/request/HomeInformationRequest'
+import { InsuranceScoreEnum } from '@risk-assessment/model'
+import { HouseOwnershipEnum } from '@risk-assessment/model/HouseOwnershipEnum'
 
 describe('RiskAssessment :: CalculateHomeInsuranceRiskUseCase', () => {
   let calculateHomeInsuranceRiskUseCase: CalculateHomeInsuranceRiskUseCase

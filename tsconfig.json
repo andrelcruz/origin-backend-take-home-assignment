@@ -11,6 +11,16 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@core": ["src/core"],
+      "@core/*": ["src/core/*"],
+      "@test": ["test"],
+      "@test/*": ["test/*"],
+      "@utils": ["src/core/utils"],
+      "@utils/*": ["src/core/utils/*"],
+      "@risk-assessment": ["src/modules/risk-assessment"],
+      "@risk-assessment/*": ["src/modules/risk-assessment/*"]
+    }
   }
 }

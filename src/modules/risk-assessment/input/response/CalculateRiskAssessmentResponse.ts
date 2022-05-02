@@ -1,4 +1,4 @@
-import { InsuranceScoreEnum } from '../../model'
+import { InsuranceScoreEnum } from '@risk-assessment/model'
 
 export interface CalculateRiskAssessmentResponse {
   auto: InsuranceScoreEnum

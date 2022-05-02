@@ -1,3 +1,4 @@
+import { MaritalStatusEnum } from '@risk-assessment/model'
 import { Type } from 'class-transformer'
 import {
   ArrayMaxSize,
@@ -11,7 +12,6 @@ import {
   Min,
   ValidateNested
 } from 'class-validator'
-import { MaritalStatusEnum } from '../../model'
 import { HomeInformationRequest } from './HomeInformationRequest'
 import { VehicleInformationRequest } from './VehicleInformationRequest'
 

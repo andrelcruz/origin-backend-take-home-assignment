@@ -1,16 +1,16 @@
+import { ValidationExceptionFilter } from '@core/filters'
+import { HttpResponseType } from '@core/globals/HttpResult'
+import { CustomClassValidatorValidationPipe } from '@core/pipes/CustomClassValidatorValidationPipe'
 import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
-import * as request from 'supertest'
-import { ValidationExceptionFilter } from '../../../../src/core/filters'
-import { HttpResponseType } from '../../../../src/core/globals/HttpResult'
-import { CustomClassValidatorValidationPipe } from '../../../../src/core/pipes/CustomClassValidatorValidationPipe'
-import { CalculateRiskAssessmentRequest } from '../../../../src/modules/risk-assessment/input/request/CalculateRiskAssessmentRequest'
+import { CalculateRiskAssessmentRequest } from '@risk-assessment/input/request/CalculateRiskAssessmentRequest'
 import {
   HouseOwnershipEnum,
   MaritalStatusEnum
-} from '../../../../src/modules/risk-assessment/model'
-import { InsuranceScoreEnum } from '../../../../src/modules/risk-assessment/model/InsuranceScoreEnum'
-import { RiskAssessmentModule } from '../../../../src/modules/risk-assessment/RiskAssessmentModule'
+} from '@risk-assessment/model'
+import { InsuranceScoreEnum } from '@risk-assessment/model/InsuranceScoreEnum'
+import { RiskAssessmentModule } from '@risk-assessment/RiskAssessmentModule'
+import * as request from 'supertest'
 
 describe('RiskAssessment :: RiskAssessmentController (e2e)', () => {
   let app: INestApplication
