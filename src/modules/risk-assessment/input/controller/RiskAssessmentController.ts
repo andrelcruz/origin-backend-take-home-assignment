@@ -1,6 +1,6 @@
-import { EnvironmentHelper } from '@core/config/EnvironmentHelper'
 import { Body, Controller, Post } from '@nestjs/common'
-import { CalculateInsuranceRiskUseCase } from '@risk-assessment/application/usecases/CalculateInsuranceRiskUseCase'
+import { EnvironmentHelper } from '../../../../core/config/EnvironmentHelper'
+import { CalculateInsuranceRiskUseCase } from '../../application/usecases/CalculateInsuranceRiskUseCase'
 import { CalculateRiskAssessmentRequest } from '../request'
 import { CalculateRiskAssessmentResponse } from '../response/CalculateRiskAssessmentResponse'
 

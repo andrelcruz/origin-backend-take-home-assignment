@@ -1,5 +1,5 @@
-import { InsuranceScoreEnum } from '@risk-assessment/model/InsuranceScoreEnum'
-import { MaritalStatusEnum } from '@risk-assessment/model/MaritalStatusEnum'
+import { InsuranceScoreEnum } from '../../model/InsuranceScoreEnum'
+import { MaritalStatusEnum } from '../../model/MaritalStatusEnum'
 import { BaseInsuranceCalculator } from './BaseInsuranceCalculator'
 export class CalculateLifeInsuranceRiskUseCase extends BaseInsuranceCalculator {
   private LifeMaxAgeAllowed: number

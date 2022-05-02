@@ -1,7 +1,7 @@
-import { HomeInformationRequest } from '@risk-assessment/input/request/HomeInformationRequest'
-import { HouseOwnershipEnum } from '@risk-assessment/model/HouseOwnershipEnum'
-import { InsuranceScoreEnum } from '@risk-assessment/model/InsuranceScoreEnum'
-import { MaritalStatusEnum } from '@risk-assessment/model/MaritalStatusEnum'
+import { HomeInformationRequest } from '../../input/request/HomeInformationRequest'
+import { HouseOwnershipEnum } from '../../model/HouseOwnershipEnum'
+import { InsuranceScoreEnum } from '../../model/InsuranceScoreEnum'
+import { MaritalStatusEnum } from '../../model/MaritalStatusEnum'
 import { BaseInsuranceCalculator } from './BaseInsuranceCalculator'
 export class CalculateDisabilityInsuranceRiskUseCase extends BaseInsuranceCalculator {
   private disabilityMaxAgeAllowed: number

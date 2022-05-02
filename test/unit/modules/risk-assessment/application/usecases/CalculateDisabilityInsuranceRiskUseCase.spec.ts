@@ -1,8 +1,8 @@
-import { CalculateDisabilityInsuranceRiskUseCase } from '@risk-assessment/application/usecases'
-import { HomeInformationRequest } from '@risk-assessment/input/request/HomeInformationRequest'
-import { InsuranceScoreEnum } from '@risk-assessment/model'
-import { HouseOwnershipEnum } from '@risk-assessment/model/HouseOwnershipEnum'
-import { MaritalStatusEnum } from '@risk-assessment/model/MaritalStatusEnum'
+import { CalculateDisabilityInsuranceRiskUseCase } from '../../../../../../src/modules/risk-assessment/application/usecases'
+import { HomeInformationRequest } from '../../../../../../src/modules/risk-assessment/input/request/HomeInformationRequest'
+import { InsuranceScoreEnum } from '../../../../../../src/modules/risk-assessment/model'
+import { HouseOwnershipEnum } from '../../../../../../src/modules/risk-assessment/model/HouseOwnershipEnum'
+import { MaritalStatusEnum } from '../../../../../../src/modules/risk-assessment/model/MaritalStatusEnum'
 
 describe('RiskAssessment :: CalculateDisabilityInsuranceRiskUseCase', () => {
   let calculateDisabilityInsuranceRiskUseCase: CalculateDisabilityInsuranceRiskUseCase

@@ -1,4 +1,4 @@
-import { InsuranceRiskModifierInterface } from '@risk-assessment/model/InsuranceRiskModifierInterface'
+import { InsuranceRiskModifierInterface } from '../../model/InsuranceRiskModifierInterface'
 
 export class CalculateIncomeInsuranceModifierUseCase {
   private incomeInsuranceModifiers

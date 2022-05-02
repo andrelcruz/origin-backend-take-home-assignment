@@ -1,6 +1,6 @@
-import { CalculateLifeInsuranceRiskUseCase } from '@risk-assessment/application/usecases'
-import { InsuranceScoreEnum } from '@risk-assessment/model'
-import { MaritalStatusEnum } from '@risk-assessment/model/MaritalStatusEnum'
+import { CalculateLifeInsuranceRiskUseCase } from '../../../../../../src/modules/risk-assessment/application/usecases'
+import { InsuranceScoreEnum } from '../../../../../../src/modules/risk-assessment/model'
+import { MaritalStatusEnum } from '../../../../../../src/modules/risk-assessment/model/MaritalStatusEnum'
 
 describe('RiskAssessment :: CalculateLifeInsuranceRiskUseCase', () => {
   let calculateLifeInsuranceRiskUseCase: CalculateLifeInsuranceRiskUseCase

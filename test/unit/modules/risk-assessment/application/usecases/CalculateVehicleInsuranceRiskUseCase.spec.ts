@@ -1,7 +1,7 @@
-import { CalculateVehicleInsuranceRiskUseCase } from '@risk-assessment/application/usecases/CalculateVehicleInsuranceRiskUseCase'
-import { VehicleInformationRequest } from '@risk-assessment/input/request/VehicleInformationRequest'
-import { InsuranceScoreEnum } from '@risk-assessment/model'
-import { InsuranceRiskModifierInterface } from '@risk-assessment/model/InsuranceRiskModifierInterface'
+import { CalculateVehicleInsuranceRiskUseCase } from '../../../../../../src/modules/risk-assessment/application/usecases/CalculateVehicleInsuranceRiskUseCase'
+import { VehicleInformationRequest } from '../../../../../../src/modules/risk-assessment/input/request/VehicleInformationRequest'
+import { InsuranceScoreEnum } from '../../../../../../src/modules/risk-assessment/model'
+import { InsuranceRiskModifierInterface } from '../../../../../../src/modules/risk-assessment/model/InsuranceRiskModifierInterface'
 
 describe('RiskAssessment :: CalculateVehicleInsuranceRiskUseCase', () => {
   let calculateVehicleInsuranceRiskUseCase: CalculateVehicleInsuranceRiskUseCase

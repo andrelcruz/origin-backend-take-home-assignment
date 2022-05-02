@@ -1,6 +1,6 @@
-import { HomeInformationRequest } from '@risk-assessment/input/request/HomeInformationRequest'
-import { HouseOwnershipEnum } from '@risk-assessment/model/HouseOwnershipEnum'
-import { InsuranceScoreEnum } from '@risk-assessment/model/InsuranceScoreEnum'
+import { HomeInformationRequest } from '../../input/request/HomeInformationRequest'
+import { HouseOwnershipEnum } from '../../model/HouseOwnershipEnum'
+import { InsuranceScoreEnum } from '../../model/InsuranceScoreEnum'
 import { BaseInsuranceCalculator } from './BaseInsuranceCalculator'
 export class CalculateHomeInsuranceRiskUseCase extends BaseInsuranceCalculator {
   public execute(

@@ -1,4 +1,4 @@
-import { InsuranceScoreEnum } from '@risk-assessment/model'
+import { InsuranceScoreEnum } from '../../model'
 
 export class BaseInsuranceCalculator {
   protected assessRisk(riskValue: number): InsuranceScoreEnum {
