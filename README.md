@@ -1,3 +1,62 @@
+## Get Started
+
+### Requirements
+
+- Npm
+- Node ^14
+
+### Initial Setup
+
+```bash
+mkdir -p "${HOME}/workspace"
+cd "${HOME}/workspace"
+git clone https://github.com/andrelcruz/origin-backend-take-home-assignment
+# If the SSH cloning doesn't work, copy the http link from the repository main screen
+
+cd origin-backend-take-home-assignment
+# Install projec dependencies 
+npm install
+
+# running!
+npm run start
+
+# run unit tests!
+npm run test:unit
+
+# run unit end-to-end!
+npm run test:e2e
+```
+
+### API routes
+
+**Default Host:** `localhost:3000/v1`
+
+**Requested endpoint:** `POST => localhost:3000/v1/risk-assessment`
+
+
+
+## Project Structure
+
+| Name                              | Description |
+| --------------------------------- | ----------- |
+| **dist/**                         | Compiled source files will be placed here |
+| **.infra/**                       | infra-structure files for the project, mostly dockerfiles for database and application |
+| **bin/**                          | Startup scripts |
+| **src/**                          | Source files |
+| **src/core/**                     | Resources shared with all modules |
+| **src/core/exceptions**           | Custom errors |
+| **src/core/filters**              | Custom application filters, mostly for error handling  |
+| **src/core/globals**              | Resources shared with all modules |
+| **src/core/pipes**                | Custom application pipes |
+| **src/modules**                   | Application modules, isolating business and system requirements |
+| **src/modules/application**       | Application requirements for the module, protecting business requirements |
+| **src/modules/input**             | Application requirements for outside communication, controllers, requests, responses |
+| **test**                          | Tests |
+| **test/unit/** *.test.ts          | Unit tests |
+| **config**                        | Environment configuration files |
+
+
+---
 # Origin Backend Take-Home Assignment
 Origin offers its users an insurance package personalized to their specific needs without requiring the user to understand anything about insurance. This allows Origin to act as their *de facto* insurance advisor.
 
