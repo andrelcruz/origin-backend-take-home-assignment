@@ -22,9 +22,9 @@ export class CalculateVehicleInsuranceRiskUseCase extends BaseInsuranceCalculato
       this.vehicleAgeModifierConfig.MODIFIER
     )
 
-    const vehicleInsuranceRiskValue = (baseInsuranceRisk += ageModifier)
+    const vehicleInsuranceRiskValue = baseInsuranceRisk + ageModifier
 
-    return this.assessRisk(vehicleInsuranceRiskValue, isEligible)
+    return this.assessRisk(vehicleInsuranceRiskValue)
   }
 
   private isEligibleForInsurance(

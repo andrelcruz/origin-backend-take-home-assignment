@@ -12,7 +12,7 @@ import {
   ValidateNested
 } from 'class-validator'
 import { MaritalStatusEnum } from '../../model'
-import { HouseInformationRequest } from './HouseInformationRequest'
+import { HomeInformationRequest } from './HomeInformationRequest'
 import { VehicleInformationRequest } from './VehicleInformationRequest'
 
 export class CalculateRiskAssessmentRequest {
@@ -45,8 +45,8 @@ export class CalculateRiskAssessmentRequest {
 
   @IsOptional()
   @ValidateNested()
-  @Type(() => HouseInformationRequest)
-  house?: HouseInformationRequest
+  @Type(() => HomeInformationRequest)
+  house?: HomeInformationRequest
 
   @IsOptional()
   @ValidateNested()

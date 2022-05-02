@@ -1,7 +1,10 @@
 import { EnvironmentHelper } from '../../../../core/config/EnvironmentHelper'
 import { CalculateRiskAssessmentRequest } from '../../input/request/CalculateRiskAssessmentRequest'
+import { HomeInformationRequest } from '../../input/request/HomeInformationRequest'
+import { VehicleInformationRequest } from '../../input/request/VehicleInformationRequest'
 import { CalculateRiskAssessmentResponse } from '../../input/response/CalculateRiskAssessmentResponse'
 import { CalculateAgeInsuranceModifierUseCase } from './CalculateAgeInsuranceModifierUseCase'
+import { CalculateHomeInsuranceRiskUseCase } from './CalculateHomeInsuranceRiskUseCase'
 import { CalculateIncomeInsuranceModifierUseCase } from './CalculateIncomeInsuranceModifierUseCase'
 import { CalculateVehicleInsuranceRiskUseCase } from './CalculateVehicleInsuranceRiskUseCase'
 
@@ -9,12 +12,7 @@ export class CalculateInsuranceRiskUseCase {
   public execute(
     calculateRiskAssessmentRequest: CalculateRiskAssessmentRequest
   ): CalculateRiskAssessmentResponse {
-    const environmentConfig = EnvironmentHelper.getConfigAsObject()
-    const { VEHICLE_INSURANCE } = environmentConfig
-    const calculateVehicleInsuranceRiskUseCase =
-      new CalculateVehicleInsuranceRiskUseCase(VEHICLE_INSURANCE.AGE_MODIFIER)
-
-    const { age, income, vehicle, risk_questions } =
+    const { age, income, vehicle, risk_questions, house } =
       calculateRiskAssessmentRequest
 
     const baseInsuranceRisk = this.getBaseInsuranceRisk(risk_questions)
@@ -24,13 +22,18 @@ export class CalculateInsuranceRiskUseCase {
     const modifiedBaseInsuranceRisk =
       baseInsuranceRisk + ageModifier + incomeModifier
 
-    const vehicleInsuranceRisk = calculateVehicleInsuranceRiskUseCase.execute(
+    const vehicleInsuranceRisk = this.getVehicleInsuranceRiskLevel(
       modifiedBaseInsuranceRisk,
       vehicle
     )
+    const homeInsuranceRisk = this.getHomeInsuranceRiskLevel(
+      modifiedBaseInsuranceRisk,
+      house
+    )
 
     return {
-      auto: vehicleInsuranceRisk
+      auto: vehicleInsuranceRisk,
+      home: homeInsuranceRisk
     }
   }
 
@@ -63,5 +66,33 @@ export class CalculateInsuranceRiskUseCase {
     })
 
     return baseInsuranceRisk
+  }
+
+  private getVehicleInsuranceRiskLevel(
+    baseInsuranceRisk: number,
+    vehicleInformation?: VehicleInformationRequest
+  ) {
+    const environmentConfig = EnvironmentHelper.getConfigAsObject()
+    const { VEHICLE_INSURANCE } = environmentConfig
+    const calculateVehicleInsuranceRiskUseCase =
+      new CalculateVehicleInsuranceRiskUseCase(VEHICLE_INSURANCE.AGE_MODIFIER)
+
+    return calculateVehicleInsuranceRiskUseCase.execute(
+      baseInsuranceRisk,
+      vehicleInformation
+    )
+  }
+
+  private getHomeInsuranceRiskLevel(
+    baseInsuranceRisk: number,
+    homeInformationRequest: HomeInformationRequest
+  ) {
+    const calculateHomeInsuranceRiskUseCase =
+      new CalculateHomeInsuranceRiskUseCase()
+
+    return calculateHomeInsuranceRiskUseCase.execute(
+      baseInsuranceRisk,
+      homeInformationRequest
+    )
   }
 }

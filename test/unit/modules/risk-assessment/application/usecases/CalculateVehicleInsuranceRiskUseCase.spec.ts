@@ -4,7 +4,7 @@ import { InsuranceScoreEnum } from '../../../../../../src/modules/risk-assessmen
 import { InsuranceRiskModifierInterface } from '../../../../../../src/modules/risk-assessment/model/InsuranceRiskModifierInterface'
 
 describe('RiskAssessment :: CalculateVehicleInsuranceRiskUseCase', () => {
-  let calculateAgeInsuranceModifierUseCase: CalculateVehicleInsuranceRiskUseCase
+  let calculateVehicleInsuranceRiskUseCase: CalculateVehicleInsuranceRiskUseCase
   let baseInsuranceRisk: number
   let ageInsuranceModifierConfigMock: InsuranceRiskModifierInterface
 
@@ -15,7 +15,7 @@ describe('RiskAssessment :: CalculateVehicleInsuranceRiskUseCase', () => {
     }
     baseInsuranceRisk = 2
 
-    calculateAgeInsuranceModifierUseCase =
+    calculateVehicleInsuranceRiskUseCase =
       new CalculateVehicleInsuranceRiskUseCase(ageInsuranceModifierConfigMock)
   })
 
@@ -25,7 +25,7 @@ describe('RiskAssessment :: CalculateVehicleInsuranceRiskUseCase', () => {
       year: currentYear - 10
     }
 
-    const response = calculateAgeInsuranceModifierUseCase.execute(
+    const response = calculateVehicleInsuranceRiskUseCase.execute(
       baseInsuranceRisk,
       vehicleInformationMock
     )
@@ -39,7 +39,7 @@ describe('RiskAssessment :: CalculateVehicleInsuranceRiskUseCase', () => {
       year: currentYear - 3
     }
 
-    const response = calculateAgeInsuranceModifierUseCase.execute(
+    const response = calculateVehicleInsuranceRiskUseCase.execute(
       baseInsuranceRisk,
       vehicleInformationMock
     )
@@ -48,7 +48,7 @@ describe('RiskAssessment :: CalculateVehicleInsuranceRiskUseCase', () => {
   })
 
   it('Returns the the ineligible when client does not own a car', () => {
-    const response = calculateAgeInsuranceModifierUseCase.execute(null)
+    const response = calculateVehicleInsuranceRiskUseCase.execute(null)
 
     expect(response).toEqual(InsuranceScoreEnum.INELIGIBLE)
   })
