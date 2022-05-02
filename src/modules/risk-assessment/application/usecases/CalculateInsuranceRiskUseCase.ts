@@ -8,6 +8,7 @@ import { CalculateAgeInsuranceModifierUseCase } from './CalculateAgeInsuranceMod
 import { CalculateDisabilityInsuranceRiskUseCase } from './CalculateDisabilityInsuranceRiskUseCase'
 import { CalculateHomeInsuranceRiskUseCase } from './CalculateHomeInsuranceRiskUseCase'
 import { CalculateIncomeInsuranceModifierUseCase } from './CalculateIncomeInsuranceModifierUseCase'
+import { CalculateLifeInsuranceRiskUseCase } from './CalculateLifeInsuranceRiskUseCase'
 import { CalculateVehicleInsuranceRiskUseCase } from './CalculateVehicleInsuranceRiskUseCase'
 
 export class CalculateInsuranceRiskUseCase {
@@ -49,10 +50,18 @@ export class CalculateInsuranceRiskUseCase {
       house
     )
 
+    const lifeInsuranceRisk = this.getLifeInsuranceRiskLevel(
+      modifiedBaseInsuranceRisk,
+      age,
+      marital_status,
+      dependents
+    )
+
     return {
       auto: vehicleInsuranceRisk,
       home: homeInsuranceRisk,
-      disability: disabilityInsuranceRisk
+      disability: disabilityInsuranceRisk,
+      life: lifeInsuranceRisk
     }
   }
 
@@ -137,6 +146,25 @@ export class CalculateInsuranceRiskUseCase {
       dependents,
       maritalStatus,
       homeInformationRequest
+    )
+  }
+
+  private getLifeInsuranceRiskLevel(
+    baseInsuranceRisk: number,
+    age: number,
+    maritalStatus: MaritalStatusEnum,
+    dependents: number
+  ) {
+    const environmentConfig = EnvironmentHelper.getConfigAsObject()
+    const { LIFE_INSURANCE } = environmentConfig
+    const calculateLifeInsuranceRiskUseCase =
+      new CalculateLifeInsuranceRiskUseCase(LIFE_INSURANCE.MAX_AGE_ALLOWED)
+
+    return calculateLifeInsuranceRiskUseCase.execute(
+      baseInsuranceRisk,
+      age,
+      dependents,
+      maritalStatus
     )
   }
 }

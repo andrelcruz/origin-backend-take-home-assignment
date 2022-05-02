@@ -1,6 +1,5 @@
 import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
-import minifaker from 'minifaker'
 import * as request from 'supertest'
 import { ValidationExceptionFilter } from '../../../../src/core/filters'
 import { HttpResponseType } from '../../../../src/core/globals/HttpResult'
@@ -10,6 +9,7 @@ import {
   HouseOwnershipEnum,
   MaritalStatusEnum
 } from '../../../../src/modules/risk-assessment/model'
+import { InsuranceScoreEnum } from '../../../../src/modules/risk-assessment/model/InsuranceScoreEnum'
 import { RiskAssessmentModule } from '../../../../src/modules/risk-assessment/RiskAssessmentModule'
 
 describe('RiskAssessment :: RiskAssessmentController (e2e)', () => {
@@ -30,22 +30,28 @@ describe('RiskAssessment :: RiskAssessmentController (e2e)', () => {
     await app.init()
 
     validRequestMock = {
-      age: minifaker.number({ min: 0, max: 90 }),
-      dependents: minifaker.number({ min: 0, max: 5 }),
-      house: { ownership_status: HouseOwnershipEnum.OWNED },
-      income: minifaker.number({ min: 0, max: 500000 }),
-      marital_status: MaritalStatusEnum.MARRIED,
+      age: 27,
+      dependents: 0,
+      house: { ownership_status: HouseOwnershipEnum.MORTGAGED },
+      income: 150000,
+      marital_status: MaritalStatusEnum.SINGLE,
       risk_questions: [0, 1, 1],
-      vehicle: { year: minifaker.number({ min: 1900, max: 2020 }) }
+      vehicle: { year: 2001 }
     }
   })
-  //   "age should not be null or undefined","age must be an integer number","age must not be less than 0"
+
   describe('Validates requestBody properties', () => {
     it('Returns a success status when using a valid request', () => {
       return request(app.getHttpServer())
         .post(moduleBasePath)
         .send(validRequestMock)
         .expect(201)
+        .expect({
+          auto: InsuranceScoreEnum.ECONOMIC,
+          home: InsuranceScoreEnum.REGULAR,
+          disability: InsuranceScoreEnum.REGULAR,
+          life: InsuranceScoreEnum.ECONOMIC
+        })
     })
 
     describe('Validates Age property requisites', () => {
