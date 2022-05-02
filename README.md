@@ -1,9 +1,26 @@
+## About
+This project is an implementation of the [requirements described in the documentation below](#origin-backend-take-home-assignment)
+
+The project aims to be modular, simple, and easy to improve.
+
+I tried to make it as complete as I could in the time I managed to allocate to the test (about 6h). Unit and e2e tests are covering what I judged to be the most important business rules.
+
+## Decisions made
+ - I chose to process every line of insurance separately, making them independent and easier to modify, but the process created a small duplication of functions (the alternative would be to calculate every input line and change the necessary lines of insurance, but I believe it would have made the project harder to read and to grow)
+ - I handled the age limit as inclusive, so if a client is 60 years old, she remains eligible for disability and life insurance
+
+## Improvements to be made!
+  - Handle environment config without having to transform it into an object
+  - Support docker
+  - Simplify CalculateInsuranceRiskUseCase, it might be nice to break it into more files
+
+---
 ## Get Started
 
 ### Requirements
 
 - Npm
-- Node ^14
+- [Node ^14](https://nodejs.org/en/download/)
 
 ### Initial Setup
 
@@ -14,7 +31,7 @@ git clone https://github.com/andrelcruz/origin-backend-take-home-assignment
 # If the SSH cloning doesn't work, copy the http link from the repository main screen
 
 cd origin-backend-take-home-assignment
-# Install projec dependencies 
+# Install project dependencies 
 npm install
 
 # running!
@@ -32,6 +49,28 @@ npm run test:e2e
 **Default Host:** `localhost:3000/v1`
 
 **Requested endpoint:** `POST => localhost:3000/v1/risk-assessment`
+```javascript
+[
+  // Calculate insurance risk
+  {
+    resource: 'risk-assessment',
+    route: '/risk-assessment',
+    method: 'POST',
+    request: {
+      body: {
+        age: number,
+        dependents: number,
+        income: number,
+        marital_status: string ('single'|'married'),
+        risk_questions: number[],
+        house: { ownership_status: string ('mortgaged'|'owned') },
+        vehicle: { year: number }
+      }
+    }
+  }
+]
+
+```
 
 
 
