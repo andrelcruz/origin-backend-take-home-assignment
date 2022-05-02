@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import {
   CalculateAgeInsuranceModifierUseCase,
+  CalculateDisabilityInsuranceRiskUseCase,
   CalculateHomeInsuranceRiskUseCase,
   CalculateIncomeInsuranceModifierUseCase,
   CalculateInsuranceRiskUseCase,
@@ -15,7 +16,8 @@ import { RiskAssessmentController } from './input/controller/RiskAssessmentContr
     CalculateIncomeInsuranceModifierUseCase,
     CalculateVehicleInsuranceRiskUseCase,
     CalculateInsuranceRiskUseCase,
-    CalculateHomeInsuranceRiskUseCase
+    CalculateHomeInsuranceRiskUseCase,
+    CalculateDisabilityInsuranceRiskUseCase
   ]
 })
 export class RiskAssessmentModule {}

@@ -3,7 +3,9 @@ import { CalculateRiskAssessmentRequest } from '../../input/request/CalculateRis
 import { HomeInformationRequest } from '../../input/request/HomeInformationRequest'
 import { VehicleInformationRequest } from '../../input/request/VehicleInformationRequest'
 import { CalculateRiskAssessmentResponse } from '../../input/response/CalculateRiskAssessmentResponse'
+import { MaritalStatusEnum } from '../../model/MaritalStatusEnum'
 import { CalculateAgeInsuranceModifierUseCase } from './CalculateAgeInsuranceModifierUseCase'
+import { CalculateDisabilityInsuranceRiskUseCase } from './CalculateDisabilityInsuranceRiskUseCase'
 import { CalculateHomeInsuranceRiskUseCase } from './CalculateHomeInsuranceRiskUseCase'
 import { CalculateIncomeInsuranceModifierUseCase } from './CalculateIncomeInsuranceModifierUseCase'
 import { CalculateVehicleInsuranceRiskUseCase } from './CalculateVehicleInsuranceRiskUseCase'
@@ -12,8 +14,15 @@ export class CalculateInsuranceRiskUseCase {
   public execute(
     calculateRiskAssessmentRequest: CalculateRiskAssessmentRequest
   ): CalculateRiskAssessmentResponse {
-    const { age, income, vehicle, risk_questions, house } =
-      calculateRiskAssessmentRequest
+    const {
+      age,
+      income,
+      vehicle,
+      risk_questions,
+      house,
+      marital_status,
+      dependents
+    } = calculateRiskAssessmentRequest
 
     const baseInsuranceRisk = this.getBaseInsuranceRisk(risk_questions)
     const ageModifier = this.getAgeModifier(age)
@@ -31,9 +40,19 @@ export class CalculateInsuranceRiskUseCase {
       house
     )
 
+    const disabilityInsuranceRisk = this.getDisabilityInsuranceRiskLevel(
+      modifiedBaseInsuranceRisk,
+      age,
+      income,
+      marital_status,
+      dependents,
+      house
+    )
+
     return {
       auto: vehicleInsuranceRisk,
-      home: homeInsuranceRisk
+      home: homeInsuranceRisk,
+      disability: disabilityInsuranceRisk
     }
   }
 
@@ -92,6 +111,31 @@ export class CalculateInsuranceRiskUseCase {
 
     return calculateHomeInsuranceRiskUseCase.execute(
       baseInsuranceRisk,
+      homeInformationRequest
+    )
+  }
+
+  private getDisabilityInsuranceRiskLevel(
+    baseInsuranceRisk: number,
+    age: number,
+    income: number,
+    maritalStatus: MaritalStatusEnum,
+    dependents: number,
+    homeInformationRequest?: HomeInformationRequest
+  ) {
+    const environmentConfig = EnvironmentHelper.getConfigAsObject()
+    const { DISABILITY_INSURANCE } = environmentConfig
+    const calculateDisabilityInsuranceRiskUseCase =
+      new CalculateDisabilityInsuranceRiskUseCase(
+        DISABILITY_INSURANCE.MAX_AGE_ALLOWED
+      )
+
+    return calculateDisabilityInsuranceRiskUseCase.execute(
+      baseInsuranceRisk,
+      age,
+      income,
+      dependents,
+      maritalStatus,
       homeInformationRequest
     )
   }

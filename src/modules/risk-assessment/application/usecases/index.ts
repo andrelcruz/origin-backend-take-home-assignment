@@ -1,4 +1,5 @@
 export * from './CalculateAgeInsuranceModifierUseCase'
+export * from './CalculateDisabilityInsuranceRiskUseCase'
 export * from './CalculateHomeInsuranceRiskUseCase'
 export * from './CalculateIncomeInsuranceModifierUseCase'
 export * from './CalculateInsuranceRiskUseCase'
