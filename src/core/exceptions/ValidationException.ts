@@ -1,9 +1,7 @@
 export class ValidationException extends Error {
-  public readonly message: any;
+  public readonly message: any
 
-  constructor (
-    readonly error: string | string[]
-  ) {
+  constructor(readonly error: string | string[]) {
     super()
     this.message = error
     this.name = 'ValidationException'

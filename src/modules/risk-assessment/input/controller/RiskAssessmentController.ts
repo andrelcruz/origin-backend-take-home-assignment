@@ -1,15 +1,23 @@
 import { Body, Controller, Post } from '@nestjs/common'
-import { TestUseCase } from '../../application/usecases/TestUseCase'
+import { EnvironmentHelper } from '../../../../core/config/EnvironmentHelper'
+import { CalculateInsuranceRiskUseCase } from '../../application/usecases/CalculateInsuranceRiskUseCase'
 import { CalculateRiskAssessmentRequest } from '../request'
+import { CalculateRiskAssessmentResponse } from '../response/CalculateRiskAssessmentResponse'
 
 @Controller('v1/risk-assessment')
 export class RiskAssessmentController {
-  constructor(private readonly testUseCase: TestUseCase) {}
+  constructor(
+    private readonly calculateInsuranceRiskUseCase: CalculateInsuranceRiskUseCase
+  ) {}
 
   @Post()
   calculateRiskAssessment(
     @Body() calculateRiskAssessmentRequest: CalculateRiskAssessmentRequest
-  ): void {
-    console.log(calculateRiskAssessmentRequest)
+  ): CalculateRiskAssessmentResponse {
+    const config = EnvironmentHelper.getConfigAsObject()
+
+    return this.calculateInsuranceRiskUseCase.execute(
+      calculateRiskAssessmentRequest
+    )
   }
 }

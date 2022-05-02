@@ -1,2 +1,1 @@
-export * from './ValidationException';
-
+export * from './ValidationException'

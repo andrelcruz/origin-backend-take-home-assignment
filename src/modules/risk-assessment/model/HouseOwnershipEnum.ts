@@ -1,4 +1,4 @@
 export enum HouseOwnershipEnum {
-    OWNED = 'owned',
-    MORTGAGED = 'mortgaged'
+  OWNED = 'owned',
+  MORTGAGED = 'mortgaged'
 }

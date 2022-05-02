@@ -1,3 +1,2 @@
-export * from './CalculateRiskAssessmentRequest';
-export * from './VehicleInformationRequest';
-
+export * from './CalculateRiskAssessmentRequest'
+export * from './VehicleInformationRequest'

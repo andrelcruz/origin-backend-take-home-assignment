@@ -1,2 +1,1 @@
-export * from './ValidationExceptionFilter';
-
+export * from './ValidationExceptionFilter'

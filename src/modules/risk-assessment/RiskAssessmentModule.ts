@@ -1,9 +1,19 @@
 import { Module } from '@nestjs/common'
-import { TestUseCase } from './application/usecases/TestUseCase'
+import {
+  CalculateAgeInsuranceModifierUseCase,
+  CalculateIncomeInsuranceModifierUseCase,
+  CalculateInsuranceRiskUseCase,
+  CalculateVehicleInsuranceRiskUseCase
+} from './application/usecases'
 import { RiskAssessmentController } from './input/controller/RiskAssessmentController'
 
 @Module({
-  providers: [TestUseCase],
-  controllers: [RiskAssessmentController]
+  controllers: [RiskAssessmentController],
+  providers: [
+    CalculateAgeInsuranceModifierUseCase,
+    CalculateIncomeInsuranceModifierUseCase,
+    CalculateVehicleInsuranceRiskUseCase,
+    CalculateInsuranceRiskUseCase
+  ]
 })
 export class RiskAssessmentModule {}

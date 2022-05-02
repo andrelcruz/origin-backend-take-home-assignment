@@ -1,0 +1,36 @@
+{
+    "API": {
+      "DEFAULT_VERSION": "v1",
+      "PORT": 3000
+    },
+    "VEHICLE_INSURANCE": {
+        "AGE_MODIFIER": {
+            "MIN_VALUE": 5,
+            "MODIFIER": 1
+        }
+    },
+    "DISABILITY_INSURANCE": {
+        "MAX_AGE_ALLOWED": 60
+    },
+    "LIFE_INSURANCE": {
+        "MAX_AGE_ALLOWED": 60
+    },
+    "GENERIC_AGE_MODIFIERS": [
+        {
+            "MIN_VALUE": 0,
+            "MAX_VALUE": 29,
+            "MODIFIER": -2
+        },
+        {
+            "MIN_VALUE": 30,
+            "MAX_VALUE": 40,
+            "MODIFIER": -1
+        }
+    ],
+    "GENERIC_INCOME_MODIFIERS": [
+        {
+            "MIN_VALUE": 200000,
+            "MODIFIER": -1
+        }
+    ]
+}

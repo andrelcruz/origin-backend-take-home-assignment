@@ -2,27 +2,35 @@ import { ValidationError, ValidationPipe } from '@nestjs/common'
 import { ValidationException } from '../exceptions'
 
 export class CustomClassValidatorValidationPipe extends ValidationPipe {
-  constructor () {
+  constructor() {
     super({
       exceptionFactory: (errors: ValidationError[]) => {
-        throw new ValidationException(this.mapValidationErrorsToStringArray(errors))
+        throw new ValidationException(
+          this.mapValidationErrorsToStringArray(errors)
+        )
       }
     })
   }
 
-  private mapValidationErrorsToStringArray = (errors: ValidationError[]): string[] => {
-    const mappedErrors: string[] = errors.reduce((acc: string[], err: ValidationError) => {
-      if (err.children && err.children.length) {
-        const childrenErrors: string[] = this.mapValidationErrorsToStringArray(err.children)
-        return [...acc, ...childrenErrors]
-      }
+  private mapValidationErrorsToStringArray = (
+    errors: ValidationError[]
+  ): string[] => {
+    const mappedErrors: string[] = errors.reduce(
+      (acc: string[], err: ValidationError) => {
+        if (err.children && err.children.length) {
+          const childrenErrors: string[] =
+            this.mapValidationErrorsToStringArray(err.children)
+          return [...acc, ...childrenErrors]
+        }
 
-      if (err.constraints) {
-        return [...acc, ...Object.values(err.constraints)]
-      }
+        if (err.constraints) {
+          return [...acc, ...Object.values(err.constraints)]
+        }
 
-      return acc
-    }, [])
+        return acc
+      },
+      []
+    )
 
     return mappedErrors
   }
